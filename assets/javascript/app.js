@@ -17,6 +17,8 @@
         }).then(function (response) {
             var results = response.data;
             // console.log(results);
+           
+            $("#animalGifs").empty();
 
             //create a for loop to go through response
 
@@ -24,7 +26,7 @@
 
                 //create a div to hold the gif
                 var gifDiv = $("<div>");
-
+                // gifDiv.attr("id", "test");
                 //create variable to store rating
                 var rating = results[i].rating;
                 
@@ -60,9 +62,10 @@ function PlayGif(){
     var state = $(this).attr("data-state");
     // var animalstill = $(this).attr("data-still");
     // var animalanimate = $(this).attr("data-animate");
+    console.log($(this).attr("data-animated"));
 
     if(state === "still") {
-        $(this).attr("src", $(this).attr("data-animate"));
+        $(this).attr("src", $(this).attr("data-animated"));
         $(this).attr("data-state", "animate");
 
     } else {
@@ -79,7 +82,9 @@ $("#add-animal").on("click", function (event) {
     //grab input from textbox and stores in variable
     var animalInput = $("#animal-input").val().trim();
     //add animal from textbox to array
-    animals.append(animalInput);
+    animals.push(animalInput);
+    console.log(animals);
+    renderButton();
 
 })
 //create a function that creates a for loop that goes through the array and makes buttons for the initial animal object
